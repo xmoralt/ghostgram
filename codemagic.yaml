@@ -14,7 +14,11 @@ workflows:
 
       - name: Install Bazel
         script: |
-          brew install bazelisk
+          mkdir -p build-input
+          curl -L https://github.com/bazelbuild/bazel/releases/download/8.4.2/bazel-8.4.2-darwin-arm64 \
+            -o build-input/bazel-8.4.2-darwin-arm64
+          chmod +x build-input/bazel-8.4.2-darwin-arm64
+          sudo cp build-input/bazel-8.4.2-darwin-arm64 /usr/local/bin/bazel
 
       - name: Create build config
         script: |
