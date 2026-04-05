@@ -1,0 +1,51 @@
+workflows:
+  ghostgram-ios:
+    name: Ghostgram Build
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+
+    environment:
+      xcode: "26.2"
+
+    scripts:
+      - name: Init submodules
+        script: |
+          git submodule update --init --recursive
+
+      - name: Install Bazel
+        script: |
+          brew install bazelisk
+
+      - name: Create build config
+        script: |
+          cat > build-system/ghostgram_config.json << 'EOF'
+          {
+            "bundle_id": "com.ghostgram.app",
+            "api_id": "28081815",
+            "api_hash": "b31b89eb5f386d8dd899955abb2e0a7b",
+            "team_id": "XXXXXXXXXX"
+          }
+          EOF
+
+      - name: Generate Xcode project
+        script: |
+          python3 build-system/Make/Make.py \
+            --cacheDir="$HOME/telegram-bazel-cache" \
+            --overrideXcodeVersion \
+            generateProject \
+            --configurationPath=build-system/ghostgram_config.json \
+            --xcodeManagedCodesigning \
+            --disableProvisioningProfiles
+
+      - name: Build
+        script: |
+          python3 build-system/Make/Make.py \
+            --cacheDir="$HOME/telegram-bazel-cache" \
+            --overrideXcodeVersion \
+            build \
+            --configurationPath=build-system/ghostgram_config.json \
+            --buildNumber=100001 \
+            --configuration=release_arm64
+
+    artifacts:
+      - "**/*.ipa"
