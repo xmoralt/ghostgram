@@ -20,6 +20,14 @@ workflows:
             "api_id": "28081815",
             "api_hash": "b31b89eb5f386d8dd899955abb2e0a7b",
             "team_id": "XXXXXXXXXX"
+            "app_center_id": "",
+            "is_internal_build": "false",
+            "is_appstore_build": "false",
+            "appstore_id": "0",
+            "app_specific_url_scheme": "tg",
+            "premium_iap_product_id": "",
+            "enable_siri": "false",
+            "enable_icloud": "false"
           }
           EOF
 
