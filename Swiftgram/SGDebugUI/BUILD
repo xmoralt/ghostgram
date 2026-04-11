@@ -1,20 +1,5 @@
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-config_setting(
-    name = "debug_build",
-    values = {
-        "compilation_mode": "dbg",
-    },
-)
-
-flex_dependency = select({
-    ":debug_build": [
-        "@flex_sdk//:FLEX"
-    ],
-    "//conditions:default": [],
-})
-
-
 swift_library(
     name = "SGDebugUI",
     module_name = "SGDebugUI",
@@ -44,7 +29,7 @@ swift_library(
         "//submodules/OverlayStatusController:OverlayStatusController",
         "//submodules/AccountContext:AccountContext",
         "//submodules/UndoUI:UndoUI"
-    ] + flex_dependency,
+    ],
     visibility = [
         "//visibility:public",
     ],
