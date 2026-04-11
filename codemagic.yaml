@@ -14,25 +14,25 @@ workflows:
 
       - name: Create build config
         script: |
-          python3 -c "
+          python3 << 'PYEOF'
           import json
           config = {
             "bundle_id": "com.ghostgram.app",
             "api_id": "28081815",
             "api_hash": "b31b89eb5f386d8dd899955abb2e0a7b",
             "team_id": "XXXXXXXXXX"
-            'app_center_id': '',
-            'is_internal_build': 'false',
-            'is_appstore_build': 'false',
-            'appstore_id': '0',
-            'app_specific_url_scheme': 'tg',
-            'premium_iap_product_id': '',
-            'enable_siri': 'false',
-            'enable_icloud': 'false'
+            "app_center_id": "",
+            "is_internal_build": "false",
+            "is_appstore_build": "false",
+            "appstore_id": "0",
+            "app_specific_url_scheme": "tg",
+            "premium_iap_product_id": "",
+            "enable_siri": "false",
+            "enable_icloud": "false"
           }
-          with open('build-system/ghostgram_config.json', 'w') as f:
+          with open("build-system/ghostgram_config.json", "w") as f:
             json.dump(config, f, indent=2)
-          "
+          PYEOF
 
       - name: Generate Xcode project
         script: |
