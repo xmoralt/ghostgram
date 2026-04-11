@@ -1,8 +1,8 @@
 {
-	"bundle_id": "",
-	"api_id": "",
-	"api_hash": "",
-	"team_id": "",
+	"bundle_id": "com.ghostgram.app",
+	"api_id": "28081815",
+	"api_hash": "b31b89eb5f386d8dd899955abb2e0a7b",
+	"team_id": "XXXXXXXXXX",
 	"app_center_id": "0",
 	"is_internal_build": "true",
 	"is_appstore_build": "true",
