@@ -12,14 +12,6 @@ workflows:
         script: |
           git submodule update --init --recursive
 
-      - name: Install Bazel
-        script: |
-          mkdir -p build-input
-          curl -L https://github.com/bazelbuild/bazel/releases/download/8.4.2/bazel-8.4.2-darwin-arm64 \
-            -o build-input/bazel-8.4.2-darwin-arm64
-          chmod +x build-input/bazel-8.4.2-darwin-arm64
-          sudo cp build-input/bazel-8.4.2-darwin-arm64 /usr/local/bin/bazel
-
       - name: Create build config
         script: |
           cat > build-system/ghostgram_config.json << 'EOF'
@@ -30,11 +22,6 @@ workflows:
             "team_id": "XXXXXXXXXX"
           }
           EOF
-
-      - name: Patch Bazel SHA check
-        script: |
-          sed -i '' 's/if bazel_sha256 != expected_sha256:/if False:/g' \
-            build-system/Make/BazelLocation.py
 
       - name: Generate Xcode project
         script: |
