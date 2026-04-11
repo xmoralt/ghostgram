@@ -18,7 +18,7 @@ workflows:
             --cacheDir="$HOME/telegram-bazel-cache" \
             --overrideXcodeVersion \
             generateProject \
-            --configurationPath=build-system/ghostgram_config.json \
+            --configurationPath=build-system/config.json \
             --xcodeManagedCodesigning \
             --disableProvisioningProfiles
 
@@ -28,7 +28,7 @@ workflows:
             --cacheDir="$HOME/telegram-bazel-cache" \
             --overrideXcodeVersion \
             build \
-            --configurationPath=build-system/ghostgram_config.json \
+            --configurationPath=build-system/config.json \
             --buildNumber=100001 \
             --configuration=release_arm64
 
